@@ -26,6 +26,37 @@ public class secondProgrammingTest {
          return 0.0;
       }
    }
+   
+   //Create the Metric class, an instance of the Metric class should be able to perform methods from the Measurement class
+   //One inch is equal to 0.0254 of a meter
+   //One centimeter is equal to 0.01 of a meter
+   public static class Metric extends Measurement {
+      
+      public Metric(double inches) {
+         super(inches);
+      }
+      
+      public double getMeters() {
+         return 0.0;
+      }
+      
+      public double getCentimeters() {
+         return 0.0;
+      }
+   }
+   
+   //Implement the method to find the number in the place of the integer taken as an argument, index, in the fibonacci sequence
+   //Where fibonacci sequence formula: F[n] = F[n-1] + F[n-2] and F[0] = 0 and f[1] = 1
+   //Ex.) F[2] = 1 because: F[2] = F[1] + f[0], F[2] = 1 + 0, F[2] = 1
+   public static int fibonacciSequence(int index) {
+      return 0;
+   }
+   
+   //Accept the integer, num, return true if the integer is prime and false if it is not
+   //Prime numbers are defined as any number where the only two factors are 1 and itself
+   public static boolean isPrime(int num) {
+      return false;
+   }
       
    
 //....................................................................................................
@@ -78,8 +109,10 @@ public class secondProgrammingTest {
    
    //DO NOT TOUCH OR EDIT THIS FUNCTION
    public static void main(String[] args) {
-      
-      Measurement[] m = new Measurement[10];
+     
+      int numPassed = 0;
+     
+      Metric[] m = new Metric[10];
       double[] creationVal = {0.0, 10.0, 30.0, 45.5, 100.0, 12.0, 632.0, 99999.0, 632.0, 43.2};
       
       if (!mute) {
@@ -88,25 +121,118 @@ public class secondProgrammingTest {
       }
       int casesPassed = 0;
       for (int i = 0; i < 10; i++) {
-         boolean passed = false;
-         m[i] = new Measurement(creationVal[i]);
+         boolean metricPassed = false;
+         m[i] = new Metric(creationVal[i]);
          if (m[i].getInches() == creationVal[i]) {
             if (m[i].getFeet() == creationVal[i] / 12) {
                double rand = (Math.random() + 1) * 10;
                m[i].setInches(rand);
                if (m[i].getInches() == rand) {
                   if (m[i].getFeet() == rand / 12) {
-                     casesPassed += 1;
-                     passed = true;
+                     if (m[i].getMeters() == rand * 0.0254) {
+                        if (m[i].getCentimeters() == rand * 0.0254 * 100) {
+                           casesPassed += 1;
+                           metricPassed = true;
+                        }
+                     }
                   }
                }
             }  
          }
-         if (passed) {
-            System.out.println("Case #" + (i + 1) + " Passed");
+         if (!mute) {
+            if (metricPassed) {
+               System.out.println("Case #" + (i + 1) + " Passed");
+            } else {
+               System.out.println("Case #" + (i + 1) + " Failed");
+            }
+         }
+      }
+      if (!mute) {
+         System.out.println("");
+         System.out.println("");
+      }
+      if (casesPassed == 10) {
+         numPassed++;
+         System.out.println("Measurement problem passed");
+      } else {
+         System.out.println("Measurement problem failed");
+      }
+      
+      if (!mute) {
+         System.out.println("");
+         System.out.println("");
+      }
+      if (!mute) {
+         System.out.println("Checking Fibonacci with 10 Tests");
+         System.out.println("-------------------------------------------");
+      }
+      
+      int[] fibQ = {0, 1, 10, 2, 3, 7, 5, 6, 8, 9};
+      int[] fibSol = {0, 1, 55, 1, 2, 13, 5, 8, 21, 34};
+      int fibCasesPassed = 0;
+      
+      for (int i = 0; i < 10; i++) {
+         if (fibonacciSequence(fibQ[i]) == fibSol[i]) {
+            fibCasesPassed++;
+            if (!mute) {
+               System.out.println("Case #" + (i + 1) + " Passed");
+            }
          } else {
             System.out.println("Case #" + (i + 1) + " Failed");
          }
       }
+      if (!mute) {
+         System.out.println("");
+         System.out.println("");
+      }
+      if (fibCasesPassed == 10) {
+         numPassed++;
+         System.out.println("Fibonacci problem Solved");
+      } else {
+         System.out.println("Fibonacci problem Failed");
+      }
+      
+      if (!mute) {
+         System.out.println("");
+         System.out.println("");
+      }
+      if (!mute) {
+         System.out.println("Checking Prime Number with 10 Tests");
+         System.out.println("-------------------------------------------");
+      }
+      
+      boolean[] primeSol = {false, true, true, false, true, false, true, false, false, false};
+      int[] primeQ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+      int primeCasesSolved = 0;
+      
+      for (int i = 0; i < 10; i++) {
+         if (isPrime(primeQ[i]) == primeSol[i]) {
+            primeCasesSolved++;
+            if (!mute) {
+               System.out.println("Case #" + (i + 1) + " Passed");
+            } 
+         } else {
+            if (!mute) {
+               System.out.println("Case #" + (i + 1) + " Failed");
+            }
+         }
+      }
+      if (!mute) {
+         System.out.println("");
+         System.out.println("");
+      }
+      if (primeCasesSolved == 10) {
+         numPassed++;
+         System.out.println("Prime Numbers problem Solved");
+      } else {
+         System.out.println("Prime Numbers problem Failed");
+      }
+      
+      if (!mute) {
+         System.out.println("");
+         System.out.println("");
+      }
+      
+      System.out.println("Problems Passed " + numPassed + "/3");
    }
 }
