@@ -13,6 +13,7 @@ public class secondProgrammingTest {
       private double inches = 0;
       
       public Measurement(double inches) {
+      
       }
       
       public double getInches() {
@@ -20,6 +21,7 @@ public class secondProgrammingTest {
       }
       
       public void setInches(double inches) {
+
       }
       
       public double getFeet() {
